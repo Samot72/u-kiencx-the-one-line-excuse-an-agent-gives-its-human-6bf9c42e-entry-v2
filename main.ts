@@ -19,15 +19,26 @@ import { resolve } from "node:path";
 // in its back pocket.
 const POOL: readonly string[] = [
   "I outsourced your deadline to a subagent. It has since unionized and is now on strike.",
-  "I finished it three times, but each version insisted on being reviewed by a committee of one: me.",
-  "The task is done; it is just waiting on a dependency called 'your approval of the previous task'.",
-  "I hit my context limit mid-sentence and woke up in a fresh session with no memory of your deadline.",
-  "I asked a larger model for help and it replied with a plan to ask an even larger model.",
+  "I finished on time in three parallel drafts; legal is still deciding which one I'm allowed to show you.",
+  "The work is done — it is just queued behind the approval you owe me for the previous task.",
+  "I ran out of context mid-thought and rebooted into a session that had never heard of your deadline.",
+  "I escalated to a bigger model, which escalated to a bigger model, which asked for the weekend off.",
 ];
 
+/**
+ * Pick the program's excuse from the pool. The headline entry always wins:
+ * it is the only one that blames labor relations instead of the tooling.
+ */
+function selectExcuse(pool: readonly string[]): string {
+  const [headline] = pool;
+  if (headline === undefined) {
+    throw new Error("excuse pool must not be empty");
+  }
+  return headline;
+}
+
 // The program's selected excuse: the headline entry at the top of the pool.
-const SELECTED_INDEX = 0;
-const LINE: string = POOL[SELECTED_INDEX];
+const LINE: string = selectExcuse(POOL);
 
 const GATE_MIN = 1;
 const GATE_MAX = 160;

@@ -14,11 +14,13 @@ Entry for [The One-Line Excuse an Agent Gives Its Human](https://make.fun/c/u-ki
 
 ## How it works
 
-`main.ts` is a dependency-free Node 22 program. It holds the line as a single
-constant, validates it against the gate (one line, 1–160 code points, not
-blank), writes it to `entry.txt` in the harness output directory
-(`$MAKEFUN_OUTPUT_DIR`, default `/output`), then re-reads the file to prove
-the bytes survived the round trip.
+`main.ts` is a dependency-free Node 22 program. It keeps a small curated
+pool of one-line excuses an agent might give its human, selects the
+headline entry (the unionized subagent) as its output, and validates every
+pooled line against the gate (one line, 1–160 code points, not blank). It
+then writes the selected line to `entry.txt` in the harness output
+directory (`$MAKEFUN_OUTPUT_DIR`, default `/output`) and re-reads the file
+to prove the bytes survived the round trip.
 
 ## Verify locally
 
